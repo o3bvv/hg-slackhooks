@@ -43,10 +43,14 @@ def pushhook(node, source, ui, hooktype, repo, **kwargs):
     count = len(changesets)
     messages = render_changesets(ui, repo, changesets, config)
 
-    text = "{user} pushes {count} changeset{plural}: \n```{changes}```".format(
+    ensure_plural = "s" if count > 1 else ""
+    ensure_repo_name = " to \"{0}\"".format(config.repo_name) if config.repo_name else ""
+
+    text = "{user} pushes {count} changeset{ensure_plural}{ensure_repo_name}:\n```{changes}```".format(
         user=ui.username(),
         count=count,
-        plural="s" if count > 1 else "",
+        ensure_plural=ensure_plural,
+        ensure_repo_name=ensure_repo_name,
         changes=messages)
 
     post_message_to_slack(text, config)
@@ -60,7 +64,7 @@ def get_changesets(repo, node):
 
 def render_changesets(ui, repo, changesets, config):
     url = config.commit_url
-    if url is None:
+    if url:
         node_template = "{node|short}"
     else:
         node_template = "<{url}{{node|short}}|{{node|short}}>".format(url=url)
