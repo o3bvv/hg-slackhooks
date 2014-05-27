@@ -65,16 +65,16 @@ def get_changesets(repo, node):
 def render_changesets(ui, repo, changesets, config):
     url = config.commit_url
     if url:
-        node_template = "{node|short}"
-    else:
         node_template = "<{url}{{node|short}}|{{node|short}}>".format(url=url)
+    else:
+        node_template = "{node|short}"
 
-    template = " | ".join([
+    template = "{0}\\n".format(" | ".join([
         "{branch}",
         node_template,
         "{date(date, '%Y-%m-%d [%H:%M:%S]')}",
         "{desc|strip|firstline}",
-    ]) + "\\n"
+    ]))
 
     displayer = show_changeset(ui, repo, {'template': template})
     ui.pushbuffer()
@@ -93,7 +93,7 @@ def post_message_to_slack(message, config):
     }
     payload_optional_key(payload, config, 'icon_url')
     payload_optional_key(payload, config, 'icon_emoji')
-    request = urllib2.Request(target_url, "payload=%s" % json.dumps(payload))
+    request = urllib2.Request(target_url, "payload={0}".format(json.dumps(payload)))
     urllib2.build_opener().open(request)
 
 
