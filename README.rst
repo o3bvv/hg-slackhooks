@@ -20,6 +20,6 @@ To add push hooks for some repo, modify ``.hg/hgrc`` in the central repository::
 
 Here ``org_name`` are ``token`` obligatory.
 
-.. note:: currenlty ``token`` is given per channel, so you do not have to set channel name manually.
+    **note**: currenlty ``token`` is given per channel, so you do not have to set channel name manually.
 
 ``repo_name`` is optional.
