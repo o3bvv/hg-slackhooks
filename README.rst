@@ -18,6 +18,12 @@ To add push hooks for some repo, modify ``.hg/hgrc`` in the central repository::
     [hooks]
     changegroup.slackhooks= python:/path/to/slackhooks.py:pushhook
 
+Example of chat message:
+
+.. image:: http://i.imgur.com/Ivcctgq.png
+    :alt: Mercurial push hook chat message
+    :align: center
+
 Here ``org_name`` are ``token`` obligatory.
 
     **note**: currenlty ``token`` is given per channel, so you do not have to set channel name manually.
