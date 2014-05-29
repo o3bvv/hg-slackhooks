@@ -32,3 +32,6 @@ Options
    *It's obligatory and it's a part of your unique webhook URL.*
 #. ``repo_name`` is a name of your repository. *It's optional.*
 #. ``commit_url`` is a part of URL for parcilular changeset. If it is specified, link to a changeset will be inserted in description of changeset. Plain text short revision number will be used otherwise.
+#. ``username`` is the displayed name. Default: ``mercurial``.
+#. ``icon_emoji`` is the name of emoticon, which will be displayed. *It's optional.* You can use ``icon_url`` instead.
+#. ``icon_url`` is a direct link to image, which will be displayed. *It's optional.*
