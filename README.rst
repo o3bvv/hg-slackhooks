@@ -35,4 +35,6 @@ Options
 #. ``username`` is the displayed name. Default: ``mercurial``.
 #. ``icon_emoji`` is the name of emoticon, which will be displayed. *It's optional.* You can use ``icon_url`` instead.
 #. ``icon_url`` is a direct link to image, which will be displayed. *It's optional.* You can use
-   `this link <https://raw.githubusercontent.com/oblalex/hg-slackhooks/master/assets/mercurial.png>`_ if you want.
+   `this icon URL <https://raw.githubusercontent.com/oblalex/hg-slackhooks/master/assets/mercurial.png>`_ if you want.
+
+``icon_emoji`` and ``icon_url`` are both optional and interchangeable.
