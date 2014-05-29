@@ -12,14 +12,26 @@ To add push hooks for some repo, modify ``.hg/hgrc`` in the central repository::
     org_name = YOUR_ORGANIZATION_NAME
     token = CHANNEL_TOKEN
     repo_name = sample repository
-    commit_url = http://46.149.83.248:2080/hg/home/hg/101-discounts-website-test/rev/
+    commit_url = http://example.com/101-sandbox/rev/
     icon_emoji = :mercurial:
 
     [hooks]
     changegroup.slackhooks= python:/path/to/slackhooks.py:pushhook
 
-Here ``org_name`` are ``token`` obligatory.
+Example of chat message output:
 
-    **note**: currenlty ``token`` is given per channel, so you do not have to set channel name manually.
+.. image:: http://i.imgur.com/Ivcctgq.png
+    :alt: Mercurial push hook chat message
+    :align: center
 
-``repo_name`` is optional.
+Options
+~~~~~~~
+
+#. ``org_name`` is the name of your organization. *It's obligatory and it's a part of your unique webhook URL.*
+#. ``token`` is your API token. Currenlty token is given per channel, so you do not have to set channel name manually.
+   *It's obligatory and it's a part of your unique webhook URL.*
+#. ``repo_name`` is a name of your repository. *It's optional.*
+#. ``commit_url`` is a part of URL for parcilular changeset. If it is specified, link to a changeset will be inserted in description of changeset. Plain text short revision number will be used otherwise.
+#. ``username`` is the displayed name. Default: ``mercurial``.
+#. ``icon_emoji`` is the name of emoticon, which will be displayed. *It's optional.* You can use ``icon_url`` instead.
+#. ``icon_url`` is a direct link to image, which will be displayed. *It's optional.*
