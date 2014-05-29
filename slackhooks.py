@@ -33,10 +33,8 @@ def get_config(ui):
                   icon_url)
 
 
-def pushhook(node, source, ui, hooktype, repo, **kwargs):
-    if source != 'push':
-        return False
-
+def pushhook(node, hooktype, url, repo, source, ui, **kwargs):
+    username = url[url.rfind('::')+2:]
     config = get_config(ui)
 
     changesets = get_changesets(repo, node)
@@ -47,7 +45,7 @@ def pushhook(node, source, ui, hooktype, repo, **kwargs):
     ensure_repo_name = " to \"{0}\"".format(config.repo_name) if config.repo_name else ""
 
     text = "{user} pushes {count} changeset{ensure_plural}{ensure_repo_name}:\n```{changes}```".format(
-        user=ui.username(),
+        user=username,
         count=count,
         ensure_plural=ensure_plural,
         ensure_repo_name=ensure_repo_name,
